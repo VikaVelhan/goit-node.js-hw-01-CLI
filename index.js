@@ -14,11 +14,15 @@ const invokeAction = async ({ action, id, name, email, phone }) => {
 
     case "get":
       const contact = await getContactById(id);
+      if (!contact) {
+        throw new Error(`Contact with id=${id} not found`);
+      }
       console.log(contact);
       break;
 
     case "add":
-      // ... name email phone
+      const newContact = await addContact(name, email, phone);
+      console.log(newContact);
       break;
 
     case "remove":
@@ -30,5 +34,8 @@ const invokeAction = async ({ action, id, name, email, phone }) => {
   }
 };
 
-//const contactId = "AeHIrLTr6JkxGE6SN-0Rw";
-//invokeAction({ action: "get", contactId });
+const name = "Anny May";
+const email = "annyMay@mail.com";
+const phone = "(145)741-7475";
+
+invokeAction({ action: "add", name, email, phone });
