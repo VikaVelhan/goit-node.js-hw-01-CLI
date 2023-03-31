@@ -26,7 +26,8 @@ const invokeAction = async ({ action, id, name, email, phone }) => {
       break;
 
     case "remove":
-      // ... id
+      const delContact = await removeContact(id);
+      console.log(delContact);
       break;
 
     default:
@@ -34,8 +35,10 @@ const invokeAction = async ({ action, id, name, email, phone }) => {
   }
 };
 
-const name = "Anny May";
-const email = "annyMay@mail.com";
-const phone = "(145)741-7475";
+//const name = "Anny May";
+//const email = "annyMay@mail.com";
+//const phone = "(145)741-7475";
 
-invokeAction({ action: "add", name, email, phone });
+const id = "f433aec9-c4c2-4b7d-b5a4-b6e07d4fe7de";
+
+invokeAction({ action: "remove", id });
