@@ -7,6 +7,7 @@ const {
 
 const { Command } = require("commander");
 const program = new Command();
+const chalk = require("chalk");
 
 program
   .option("-a, --action <type>", "choose action")
@@ -41,7 +42,13 @@ const invokeAction = async ({ action, id, name, email, phone }) => {
 
     case "remove":
       const delContact = await removeContact(id);
-      console.log(delContact);
+      console.log(
+        chalk.blue(
+          `Contact with id=` +
+            chalk.blue.underline.bold(`${id}`) +
+            ` deleted successfully`
+        )
+      );
       break;
 
     default:
